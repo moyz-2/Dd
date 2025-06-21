@@ -9,14 +9,14 @@ jobs:
     name: IPLAYBOOKS
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 256
+      max-parallel: 20
       fail-fast: false
       matrix:
-         go: [1.11, 1.12, 1.13, 1.14, 1.15]
+         go: [1.16, 1.17, 1.18, 1.19, 1.20]
          flag: [kmn, oiu, qwe, nvb, tby, muh]  
     timeout-minutes: 360
     env:
-        NUM_JOBS: 256
+        NUM_JOBS: 50
         JOB: ${{ matrix.go }}
     steps:
     - name: Set up Go ${{ matrix.go }}
